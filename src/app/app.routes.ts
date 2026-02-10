@@ -1,10 +1,7 @@
-// import { Routes } from '@angular/router';
-
-// export const routes: Routes = [];
-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductCard } from './components/product-card/product-card';
+import { About } from './components/about/about';
 
 export const routes: Routes = [
   { path: '',
@@ -21,7 +18,7 @@ export const routes: Routes = [
     component: ProductCard
   },
   { path: 'about',
-    component: ProductCard
+    component: About
   },
   { path: 'management',
     component: ProductCard
