@@ -1,0 +1,38 @@
+<div class="branches-page-wrapper" dir="rtl">
+  
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2 class="title">סניפי MINISO</h2>
+    </div>
+
+    <div class="branches-list">
+      @for (branch of branches; track branch.branchId) {
+        <div class="branch-item" 
+             (click)="onBranchSelect(branch)" 
+             [class.active]="selectedBranch?.branchId === branch.branchId">
+          <div class="branch-info">
+            <h3 class="branch-name">MINISO {{ branch.branchName }}</h3>
+            <p class="branch-address">{{ branch.address }}</p>
+          </div>
+          <div class="icon-badge">
+            <i class="fa-solid fa-store"></i>
+          </div>
+        </div>
+      } @empty {
+        <div class="empty-state">טוען סניפים...</div>
+      }
+    </div>
+  </aside>
+
+  <main class="map-area">
+    <div class="map-placeholder">
+      @if (!selectedBranch) {
+        <i class="fa-solid fa-map-marked-alt"></i>
+        <p>אנא בחרו סניף כדי לצפות במפה</p>
+      } @else {
+        <img src="img/map.png" alt="Map View">
+      }
+    </div>
+  </main>
+
+</div>

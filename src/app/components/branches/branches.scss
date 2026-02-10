@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap');
+
+// משתנים
+$miniso-red: #E60012;
+$text-dark: #2D2D2D;
+$text-gray: #666666;
+$bg-light: #f4f7f9;
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; // שימוש ב-min-height מאפשר גמישות
+  width: 100%;
+  background-color: $bg-light;
+  margin: 0;
+  padding: 0;
+  font-family: 'Assistant', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden; // מונע את פסי הגלילה הראשיים של הדפדפן
+}
+
+.branches-page-wrapper {
+  display: flex;
+  width: 90%; // הגדלתי מעט כדי שיהיה יותר מקום לנתונים
+  max-width: 1400px;
+  height: 85vh;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  overflow: hidden; // שומר שהפינות המעוגלות יחתכו את התוכן הפנימי
+  direction: rtl; // מוודא כיוון כתיבה עברי
+
+  .sidebar {
+    width: 400px;
+    background: #fff;
+    border-left: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+
+    .sidebar-header {
+      padding: 30px 25px;
+      border-bottom: 1px solid #f8f8f8;
+      flex-shrink: 0; // מונע מהכותרת להצטמצם
+
+      .title {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: $text-dark;
+        margin: 0;
+      }
+    }
+
+    .branches-list {
+      flex: 1;
+      overflow-y: auto; // מאפשר גלילה רק בתוך רשימת הסניפים
+      padding: 10px 0;
+      
+      // עיצוב פס גלילה עדין (במקום להעלים לגמרי, כדי שהמשתמש ידע שאפשר לגלול)
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #e0e0e0;
+        border-radius: 10px;
+      }
+
+      .branch-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 25px;
+        border-bottom: 1px solid #fafafa;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: #f9f9f9;
+        }
+
+        &.active {
+          background-color: #fffef2; // צבע רקע עדין לסניף נבחר
+          border-right: 4px solid $miniso-red;
+          
+          .branch-name { color: $miniso-red; }
+        }
+
+        .branch-info {
+          flex: 1;
+          .branch-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: $text-dark;
+            margin-bottom: 4px;
+          }
+          .branch-address {
+            color: $text-gray;
+            font-size: 0.9rem;
+          }
+        }
+
+        .icon-badge {
+          background: $miniso-red;
+          color: white;
+          width: 38px;
+          height: 38px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 15px; // רווח בין הטקסט לאייקון
+        }
+      }
+    }
+  }
+
+  .map-area {
+    flex: 1;
+    background-color: #eee;
+    position: relative;
+    
+    img, iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: none;
+    }
+  }
+}
+
+// התאמה למסכים קטנים
+@media (max-width: 900px) {
+  .branches-page-wrapper {
+    flex-direction: column;
+    height: 95vh;
+    width: 95%;
+
+    .sidebar {
+      width: 100%;
+      height: 40%; // במובייל הרשימה תופסת חלק מהגובה
+      border-left: none;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .map-area {
+      height: 60%;
+    }
+  }
+}
