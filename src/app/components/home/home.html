@@ -1,0 +1,21 @@
+<div class="home-container" style="padding: 20px; direction: rtl;">
+  <h2>הקטגוריות שלנו</h2>
+
+  @if (isLoading) {
+    <div class="loader">טוען נתונים...</div>
+  } @else if (errorMessage) {
+    <div class="error" style="color: red;">{{ errorMessage }}</div>
+  } @else {
+    <div class="category-list" style="display: flex; gap: 15px; flex-wrap: wrap;">
+      
+      @for (cat of categories; track cat.categoryId) {
+        <div class="category-item" style="border: 1px solid #ddd; padding: 15px; border-radius: 8px;">
+          <strong>{{ cat.categoryName }}</strong>
+        </div>
+      } @empty {
+        <p>אין קטגוריות להצגה כרגע.</p>
+      }
+
+    </div>
+  }
+</div>

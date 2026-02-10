@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductCard } from './components/product-card/product-card';
 import { About } from './components/about/about';
+import { Home } from './components/home/home';
 
 export const routes: Routes = [
   { path: '',
     redirectTo: 'home',
     pathMatch: 'full'},
   { path: 'home',
-    component: ProductCard,
+    component: Home,
     title: 'Miniso - דף הבית'
   },
   { path: 'categories',
