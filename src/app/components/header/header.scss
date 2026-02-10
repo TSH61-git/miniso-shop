@@ -5,6 +5,7 @@ $border-color: #eeeeee;
 $transition-speed: 0.2s;
 
 .header {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   direction: rtl;
   background-color: #fff;
   border-bottom: 2px solid $primary-red; 
@@ -19,7 +20,7 @@ $transition-speed: 0.2s;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 20px 20px; 
     gap: 1.5rem;
   }
 
