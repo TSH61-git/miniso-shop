@@ -1,129 +1,140 @@
-$miniso-red: #E60012;
-$gray-light: #f3f4f6;
+$primary-red: #e4002b; 
+$text-gray: #4a4a4a;
+$light-gray: #f5f5f5;
+$border-color: #eeeeee;
+$transition-speed: 0.2s;
 
-.miniso-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 30px;
+.header {
+  direction: rtl;
   background-color: #fff;
-  border-bottom: 2px solid $miniso-red;
+  border-bottom: 2px solid $primary-red; 
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-  .logo-container {
-    .logo {
-      background-color: $miniso-red;
-      color: white;
-      font-weight: 900;
-      padding: 8px 20px;
-      font-size: 1.5rem;
-      letter-spacing: -1px;
-      cursor: pointer;
-      transition: transform 0.2s;
-
-      &:hover {
-        transform: scale(1.05);
-      }
-    }
-  }
-
-  .center-nav {
+  &__container {
+    max-width: 1400px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    gap: 40px;
+    justify-content: space-between;
+    padding: 0 20px;
+    gap: 1.5rem;
+  }
+
+  // לוגו
+  &__logo {
+    background-color: $primary-red;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.8rem;
+    padding: 8px 20px;
+    text-decoration: none;
+    display: block;
+    line-height: 1;
+  }
+
+  // חיפוש
+  &__search {
     flex: 1;
-    justify-content: center;
+    max-width: 400px;
 
-    .search-bar {
+    &-wrapper {
       position: relative;
-      input {
-        background-color: $gray-light;
-        border: 1px solid transparent;
-        border-radius: 50px;
-        padding: 6px 40px 6px 15px;
-        font-size: 0.85rem;
-        width: 220px;
-        outline: none;
-        transition: all 0.3s;
+      display: flex;
+      align-items: center;
+    }
 
-        &:focus {
-          background-color: #fff;
-          border-color: #ddd;
-          width: 250px;
-        }
-      }
-      .search-icon {
-        position: absolute;
-        right: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 0.8rem;
-        color: #999;
+    &-input {
+      width: 100%;
+      padding: 10px 40px 10px 15px;
+      border-radius: 25px;
+      border: none;
+      background-color: $light-gray;
+      font-size: 0.9rem;
+      outline: none;
+
+      &::placeholder {
+        color: #aaa;
       }
     }
 
-    .main-menu {
+    &-icon {
+      position: absolute;
+      right: 15px;
+      color: #999;
+    }
+  }
+
+  // ניווט
+  &__nav {
+    &-list {
       display: flex;
-      gap: 25px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 1.5rem;
+    }
 
-      .nav-item {
-        text-decoration: none;
-        color: #444;
-        font-weight: 700;
-        font-size: 0.85rem;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        transition: color 0.2s;
+    &-link {
+      text-decoration: none;
+      color: $text-gray;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color $transition-speed;
 
-        &:hover, &.active {
-          color: $miniso-red;
-        }
+      i {
+        font-size: 1.1rem;
+      }
 
-        i {
-          font-style: normal;
-          font-size: 0.9rem;
-        }
+      &:hover, &.active {
+        color: $primary-red;
       }
     }
   }
 
-  .actions {
+  &__actions {
     display: flex;
     align-items: center;
-    gap: 20px;
-    color: #555;
+    gap: 1.2rem;
+  }
 
-    .user-profile {
-      font-size: 1.3rem;
-      cursor: pointer;
-      &:hover { color: $miniso-red; }
+  &__action-link {
+    color: $text-gray;
+    font-size: 1.4rem;
+    text-decoration: none;
+    position: relative;
+    transition: color $transition-speed;
+
+    &:hover {
+      color: $primary-red;
     }
 
-    .cart-wrapper {
-      position: relative;
-      cursor: pointer;
-      font-size: 1.5rem;
+    &--cart {
+      margin-left: 5px;
+    }
+  }
 
-      .badge {
-        position: absolute;
-        top: -5px;
-        right: -8px;
-        background-color: $miniso-red;
-        color: white;
-        font-size: 0.65rem;
-        font-weight: bold;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid white;
-      }
+  &__cart-badge {
+    position: absolute;
+    top: -8px;
+    left: -10px;
+    background-color: $primary-red;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+  }
+
+  @media (max-width: 1024px) {
+    &__nav {
+      display: none;
     }
   }
 }

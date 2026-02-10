@@ -4,7 +4,6 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { Footer } from './components/footer/footer';
 import { ProductCard } from './components/product-card/product-card';
 
 export const routes: Routes = [
@@ -12,22 +11,27 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'},
   { path: 'home',
-    component: Footer, // בטלי את ה-comment כשייבאת את הקומפוננטה
+    component: ProductCard,
     title: 'Miniso - דף הבית'
   },
   { path: 'categories',
-    component: Footer,
-    children: [
-      // כאן אפשר להוסיף נתיבים מקוננים כמו בתמונה ששלחת
-      // ...CATEGORY_DETAILS_ROUTES 
-    ]
+    component: ProductCard,
   },
   { path: 'branches',
     component: ProductCard
   },
-  { path: 'admin',
+  { path: 'about',
     component: ProductCard
-  }
+  },
+  { path: 'management',
+    component: ProductCard
+  }, 
+  { path: 'profile',
+    component: ProductCard
+  },
+  { path: 'cart',
+    component: ProductCard
+  },
 ];
 
 @NgModule({

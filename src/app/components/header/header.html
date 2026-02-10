@@ -1,38 +1,56 @@
-<header class="miniso-header" dir="rtl">
-  <div class="logo-container" routerLink="/">
-    <div class="logo">MINISO</div>
-  </div>
-
-  <div class="center-nav">
-    <div class="search-bar">
-      <input type="text" placeholder="חפש במיניסו... ✨">
-      <span class="search-icon">🔍</span>
+<header class="header">
+  <div class="header__container">
+    
+    <div class="header__logo-container">
+      <a routerLink="/" class="header__logo">MINISO</a>
     </div>
 
-    <nav class="main-menu">
-      <a routerLink="/home" routerLinkActive="active" class="nav-item">
-        <span>בית</span> <i class="icon-home">🏠</i>
-      </a>
-      <a routerLink="/categories" routerLinkActive="active" class="nav-item">
-        <span>קטגוריות</span> <i class="icon-cat">📚</i>
-      </a>
-      <a routerLink="/branches" routerLinkActive="active" class="nav-item">
-        <span>סניפים</span> <i class="icon-loc">📍</i>
-      </a>
-      <a routerLink="/about" routerLinkActive="active" class="nav-item">
-        <span>אודות</span> <i class="icon-info">ℹ️</i>
-      </a>
-      <a routerLink="/admin" routerLinkActive="active" class="nav-item">
-        <span>ניהול</span> <i class="icon-settings">⚙️</i>
-      </a>
+    <div class="header__search">
+      <div class="header__search-wrapper">
+        <input type="text" placeholder="חפש במיניסו..." class="header__search-input">
+        <i class="fas fa-search header__search-icon"></i>
+      </div>
+    </div>
+
+    <nav class="header__nav">
+      <ul class="header__nav-list">
+        <li class="header__nav-item">
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="header__nav-link">
+             בית <i class="fas fa-home"></i>
+          </a>
+        </li>
+        <li class="header__nav-item">
+          <a routerLink="/categories" routerLinkActive="active" class="header__nav-link">
+             קטגוריות <i class="fas fa-layer-group"></i>
+          </a>
+        </li>
+        <li class="header__nav-item">
+          <a routerLink="/branches" routerLinkActive="active" class="header__nav-link">
+             סניפים <i class="fas fa-map-marker-alt"></i>
+          </a>
+        </li>
+        <li class="header__nav-item">
+          <a routerLink="/about" routerLinkActive="active" class="header__nav-link">
+             אודות <i class="fas fa-info-circle"></i>
+          </a>
+        </li>
+        <li class="header__nav-item">
+          <a routerLink="/management" routerLinkActive="active" class="header__nav-link">
+             ניהול <i class="fas fa-cog"></i>
+          </a>
+        </li>
+      </ul>
     </nav>
-  </div>
 
-  <div class="actions">
-    <div class="user-profile">👤</div>
-    <div class="cart-wrapper">
-      <span class="cart-icon">🛒</span>
-      <span class="badge">2</span>
+    <div class="header__actions">
+      <a routerLink="/profile" class="header__action-link">
+        <i class="far fa-user"></i>
+      </a>
+      <a routerLink="/cart" class="header__action-link header__action-link--cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="header__cart-badge">2</span>
+      </a>
     </div>
+
   </div>
 </header>

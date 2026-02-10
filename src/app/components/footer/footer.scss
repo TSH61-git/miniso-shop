@@ -1,0 +1,101 @@
+// משתנים לצבעים
+$primary-red: #ff0000;
+$text-gray: #555;
+$border-color: #eeeeee;
+$transition-speed: 0.3s;
+
+.footer {
+  direction: rtl;
+  background-color: #fff;
+  padding: 3rem 1rem;
+  border-top: 1px solid $border-color;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__section {
+    flex: 1;
+
+    &--brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      @media (max-width: 768px) {
+        align-items: center;
+      }
+    }
+  }
+
+  &__logo {
+    background-color: $primary-red;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.5rem;
+    padding: 10px 25px;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+
+  &__socials {
+    display: flex;
+    gap: 1rem;
+    
+    i {
+      font-size: 1.2rem;
+      color: #999;
+      transition: color $transition-speed;
+
+      &:hover {
+        color: $primary-red;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+  }
+
+  &__divider {
+    height: 1px;
+    background-color: $border-color;
+    margin-bottom: 1.2rem;
+    width: 100%;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    font-size: 0.9rem;
+    color: $text-gray;
+    margin-bottom: 0.6rem;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: color $transition-speed;
+
+      &:hover {
+        color: $primary-red;
+      }
+    }
+  }
+}
