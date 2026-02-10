@@ -1,19 +1,39 @@
-<div class="home-container" style="padding: 20px; direction: rtl;">
-  <h2>הקטגוריות שלנו</h2>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700;800&display=swap" rel="stylesheet">
 
+<section class="hero-banner">
+    <div class="hero-content">
+        <h3 class="hero-title">Love Life, Love Miniso</h3>
+        <p class="hero-subtitle">הקולקציות החדשות כבר כאן בחנויות ובאתר</p>
+    </div>
+    <div class="hero-bg-icon">🧸</div>
+</section>
+
+<div class="home-container" style="direction: rtl;">
   @if (isLoading) {
     <div class="loader">טוען נתונים...</div>
   } @else if (errorMessage) {
     <div class="error" style="color: red;">{{ errorMessage }}</div>
   } @else {
-    <div class="category-list" style="display: flex; gap: 15px; flex-wrap: wrap;">
+    <div class="category-list">
       
       @for (cat of categories; track cat.categoryId) {
-        <div class="category-item" style="border: 1px solid #ddd; padding: 15px; border-radius: 8px;">
-          <strong>{{ cat.categoryName }}</strong>
+        <div class="category-item">
+          
+          @if (cat.imageUrl!== 'NULL') {
+            <img [src]="'/' + cat.imageUrl" [alt]="cat.categoryName" class="category-img-full">
+            
+            <div class="category-overlay">
+              <span class="category-name">{{ cat.categoryName }}</span>
+            </div>
+          } @else {
+            <div class="image-placeholder">
+              <span class="category-name">{{ cat.categoryName }}</span>
+            </div>
+          }
+
         </div>
       } @empty {
-        <p>אין קטגוריות להצגה כרגע.</p>
+        <p>אין קטגוריות להצגה.</p>
       }
 
     </div>
