@@ -4,6 +4,7 @@ import { ProductCard } from './components/product-card/product-card';
 import { About } from './components/about/about';
 import { Home } from './components/home/home';
 import { Branches } from './components/branches/branches';
+import { Register } from './components/register/register';
 
 export const routes: Routes = [
   { path: '',
@@ -26,7 +27,7 @@ export const routes: Routes = [
     component: ProductCard
   }, 
   { path: 'profile',
-    component: ProductCard
+    component: Register
   },
   { path: 'cart',
     component: ProductCard

@@ -131,7 +131,7 @@ $bg-light: #f4f7f9;
 
 // התאמה למסכים קטנים
 @media (max-width: 900px) {
-  .branches-page-wrapper {
+    .branches-page-wrapper {
     flex-direction: column;
     height: 95vh;
     width: 95%;

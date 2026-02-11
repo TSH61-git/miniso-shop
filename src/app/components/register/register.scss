@@ -1,0 +1,179 @@
+$miniso-red: #E60012;
+$error-color: #e74c3c;
+
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap');
+
+.auth-wrapper, .auth-wrapper * {
+  font-family: 'Assistant', sans-serif !important;
+  direction: rtl;
+  box-sizing: border-box; // מבטיח שהפדינג לא יגדיל את האינפוטים מעבר לרוחב המותר
+}
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  padding: 20px; // מרווח ביטחון למובייל
+}
+
+.auth-card {
+  background: #ffffff;
+  padding: 50px 45px; // הגדלתי את הפדינג כדי שהקופסה תיראה גדולה ומרווחת יותר
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  max-width: 500px; // הגדלת הקופסה הלבנה כפי שביקשת
+  display: flex;
+  flex-direction: column;
+  align-items: center; // מרכוז התוכן בתוך הקארד
+}
+
+.auth-content {
+  width: 100%;
+  text-align: center;
+}
+
+// עיצוב הלוגו
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+
+  .miniso-box {
+    background-color: $miniso-red;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    transform: rotate(-6deg);
+    box-shadow: 0 8px 15px rgba($miniso-red, 0.2);
+
+    .m-letter {
+      color: #ffffff;
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1;
+    }
+  }
+}
+
+.title {
+  font-size: 32px; // הגדלה קלה של הכותרת
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #999;
+  margin-bottom: 35px;
+}
+
+.server-error-banner {
+  width: 100%;
+  background-color: #fee2e2;
+  color: #dc2626;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  border: 1px solid #fecaca;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: bold;
+}
+
+.register-form {
+  width: 100%; // תופס את כל הרוחב הפנוי בקארד
+
+  .field-group {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: right;
+
+    input {
+      width: 100%; // אינפוט מקצה לקצה בתוך הפדינג של הקארד
+      padding: 16px;
+      border: 1px solid #eee;
+      border-radius: 14px;
+      background-color: #fcfcfc;
+      font-size: 16px;
+      transition: all 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #bbb;
+        background-color: #fff;
+      }
+
+      &.ng-invalid.ng-touched {
+        border: 1.5px solid $error-color !important;
+        background-color: #fffafa;
+      }
+    }
+
+    .error-hint {
+      color: $error-color;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 6px;
+      display: block;
+      padding-right: 5px;
+    }
+  }
+}
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+
+  .strength-link {
+    position: absolute;
+    left: 15px; // רווח שווה מהצד השמאלי
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: $miniso-red;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+}
+
+.main-submit-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 18px;
+  background-color: $miniso-red;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-size: 19px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba($miniso-red, 0.15);
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba($miniso-red, 0.25);
+    background-color: darken($miniso-red, 5%);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(-1px);
+  }
+}

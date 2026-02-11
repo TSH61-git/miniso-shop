@@ -1,0 +1,59 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <div class="auth-content">
+      
+      <div class="logo-container">
+        <div class="miniso-box">
+          <span class="m-letter">M</span>
+        </div>
+      </div>
+      
+      <h1 class="title">יצירת חשבון</h1>
+      <p class="subtitle">ברוכים הבאים לעולם של מיניסו</p>
+
+      @if (errorMessage) {
+        <div class="server-error-banner">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+        
+        <div class="field-group">
+          <input type="text" formControlName="firstName" placeholder="שם פרטי">
+          @if (registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched) {
+            <span class="error-hint">נא להזין שם פרטי תקין</span>
+          }
+        </div>
+
+        <div class="field-group">
+          <input type="text" formControlName="lastName" placeholder="שם משפחה">
+          @if (registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched) {
+            <span class="error-hint">נא להזין שם משפחה תקין</span>
+          }
+        </div>
+
+        <div class="field-group">
+          <input type="email" formControlName="email" placeholder="אימייל">
+          @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+            <span class="error-hint">כתובת אימייל לא תקינה</span>
+          }
+        </div>
+        
+        <div class="field-group">
+          <div class="password-wrapper">
+            <input type="password" formControlName="password" placeholder="סיסמה">
+          </div>
+          
+          @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+            <span class="error-hint">הסיסמה חייבת להכיל לפחות 6 תווים</span>
+          }
+        </div>
+
+        <button type="submit" class="main-submit-btn" [disabled]="registerForm.invalid || isLoading">
+          {{ isLoading ? 'מעבד...' : 'הרשמה למערכת' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
