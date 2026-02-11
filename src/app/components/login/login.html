@@ -1,0 +1,47 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <div class="auth-content">
+      
+      <div class="logo-container">
+        <div class="miniso-box">
+          <span class="m-letter">M</span>
+        </div>
+      </div>
+      
+      <h1 class="title">התחברות</h1>
+      <p class="subtitle">שמחים לראות אותך שוב!</p>
+
+      @if (errorMessage) {
+        <div class="server-error-banner">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="register-form">
+        
+        <div class="field-group">
+          <input type="email" formControlName="email" placeholder="אימייל">
+          @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+            <span class="error-hint">נא להזין כתובת אימייל תקינה</span>
+          }
+        </div>
+        
+        <div class="field-group">
+          <input type="password" formControlName="password" placeholder="סיסמה">
+          @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+            <span class="error-hint">נא להזין סיסמה</span>
+          }
+        </div>
+
+        <button type="submit" class="main-submit-btn" [disabled]="loginForm.invalid || isLoading">
+          {{ isLoading ? 'מתחבר...' : 'כניסה למערכת' }}
+        </button>
+
+        <div class="footer-link">
+          עוד לא רשום? 
+          <a [routerLink]="['/register']">ליצירת חשבון חדש</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

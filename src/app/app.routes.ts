@@ -4,12 +4,14 @@ import { ProductCard } from './components/product-card/product-card';
 import { About } from './components/about/about';
 import { Home } from './components/home/home';
 import { Branches } from './components/branches/branches';
+import { Login } from './components/login/login';
 import { Register } from './components/register/register';
 
 export const routes: Routes = [
   { path: '',
     redirectTo: 'home',
-    pathMatch: 'full'},
+    pathMatch: 'full'
+  },
   { path: 'home',
     component: Home,
     title: 'Miniso - דף הבית'
@@ -27,7 +29,12 @@ export const routes: Routes = [
     component: ProductCard
   }, 
   { path: 'profile',
-    component: Register
+    component: Login,
+    title: 'Miniso - התחברות'
+  },
+  { path: 'register', 
+    component: Register, 
+    title: 'Miniso - הרשמה' 
   },
   { path: 'cart',
     component: ProductCard
