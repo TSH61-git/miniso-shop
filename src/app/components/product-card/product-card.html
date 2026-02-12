@@ -1,40 +1,10 @@
-<p>product-card works!</p>
-<p>
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br> 
-    Fugit ullam nulla ratione consequatur quo quam itaque quia,<br>
-     voluptatem repudiandae maiores id accusantium temporibus <br>
-     omnis aliquam! Exercitationem rerum repellendus ullam ad?<br>
-     Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br> 
-    Fugit ullam nulla ratione consequatur quo quam itaque quia,<br>
-     voluptatem repudiandae maiores id accusantium temporibus <br>
-     omnis aliquam! Exercitationem rerum repellendus ullam ad?<br>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br> 
-    Fugit ullam nulla ratione consequatur quo quam itaque quia,<br>
-     voluptatem repudiandae maiores id accusantium temporibus <br>
-     omnis aliquam! Exercitationem rerum repellendus ullam ad?<br>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br> 
-    Fugit ullam nulla ratione consequatur quo quam itaque quia,<br>
-     voluptatem repudiandae maiores id accusantium temporibus <br>
-     omnis aliquam! Exercitationem rerum repellendus ullam ad?<br>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br> 
-    Fugit ullam nulla ratione consequatur quo quam itaque quia,<br>
-     voluptatem repudiandae maiores id accusantium temporibus <br>
-     omnis aliquam! Exercitationem rerum repellendus ullam ad?<br>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br> 
-    Fugit ullam nulla ratione consequatur quo quam itaque quia,<br>
-     voluptatem repudiandae maiores id accusantium temporibus <br>
-     omnis aliquam! Exercitationem rerum repellendus ullam ad?<br>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br> 
-    Fugit ullam nulla ratione consequatur quo quam itaque quia,<br>
-     voluptatem repudiandae maiores id accusantium temporibus <br>
-     omnis aliquam! Exercitationem rerum repellendus ullam ad?<br>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br> 
-    Fugit ullam nulla ratione consequatur quo quam itaque quia,<br>
-     voluptatem repudiandae maiores id accusantium temporibus <br>
-     omnis aliquam! Exercitationem rerum repellendus ullam ad?<br>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit.<br> 
-    Fugit ullam nulla ratione consequatur quo quam itaque quia,<br>
-     voluptatem repudiandae maiores id accusantium temporibus <br>
-     omnis aliquam! Exercitationem rerum repellendus ullam ad?<br>
-     
-</p>
+<div class="card">
+  <div class="image-wrapper" [style.height]="randomHeight">
+    <img [src]="product.imageUrl || 'assets/placeholder.jpg'">
+    
+    <div class="hover-info">
+      <div class="name">{{ product.productName }}</div>
+      <div class="price">₪{{ product.price }}</div>
+    </div>
+  </div>
+</div>

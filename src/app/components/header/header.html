@@ -37,7 +37,7 @@
 
     <div class="header__search">
       <div class="header__search-wrapper">
-        <input type="text" placeholder="חפש במיניסו..." class="header__search-input">
+        <input type="text" placeholder="חפש במיניסו..." class="header__search-input" (input)="onSearchChange($event)">
         <i class="fas fa-search header__search-icon"></i>
       </div>
     </div>

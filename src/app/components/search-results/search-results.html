@@ -1,0 +1,17 @@
+<div *ngIf="products && products.length > 0; else noResultsTemplate">
+  <h2 class="search-title">... תוצאות החיפוש שלך</h2>
+  
+  <div class="pinterest-grid">
+    <app-product-card 
+      *ngFor="let p of products" 
+      [product]="p">
+    </app-product-card>
+  </div>
+</div>
+
+<ng-template #noResultsTemplate>
+  <div class="no-results-message">
+    <h3>אופס! לא נמצאו תוצאות עבור החיפוש שלך</h3>
+    <p>נסה להקליד מילת חיפוש אחרת או לבדוק את האיות.</p>
+  </div>
+</ng-template>

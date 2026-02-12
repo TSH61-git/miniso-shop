@@ -6,6 +6,7 @@ import { Home } from './components/home/home';
 import { Branches } from './components/branches/branches';
 import { Login } from './components/login/login';
 import { Register } from './components/register/register';
+import { SearchResults } from './components/search-results/search-results';
 
 export const routes: Routes = [
   { path: '',
@@ -25,6 +26,10 @@ export const routes: Routes = [
   { path: 'about',
     component: About
   },
+  { path: 'search',
+    component: SearchResults,
+    title: 'Miniso - חיפוש' 
+  },
   { path: 'management',
     component: ProductCard
   }, 
@@ -37,7 +42,7 @@ export const routes: Routes = [
     title: 'Miniso - הרשמה' 
   },
   { path: 'cart',
-    component: ProductCard
+    component: SearchResults
   },
 ];
 
