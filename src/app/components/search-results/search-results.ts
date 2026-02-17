@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { SearchService } from '../../services/search-service'; // ודאי שהנתיב נכון
-import { ProductCard, ProductDTO } from '../product-card/product-card';
+import { ProductCard } from '../product-card/product-card';
+import { ProductDTO } from '../../services/product-service';
+
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 

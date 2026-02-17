@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CategoryService } from '../../services/category-service';
 import { Category } from '../../models/Category';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,7 @@ export class Home {
   isLoading: boolean = true;
   errorMessage: string = '';
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService,private router: Router) {}
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe({
@@ -28,4 +30,9 @@ export class Home {
       }
     });
   }
+
+  goToCategory(categoryId: number) {
+  this.router.navigate(['/products', categoryId]);
+}
+
 }

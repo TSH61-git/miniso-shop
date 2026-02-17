@@ -5,6 +5,7 @@ import { JsonPipe } from '@angular/common';
 
 
 
+
 @Component({
   selector: 'app-product-card',
   standalone: true,
@@ -12,6 +13,7 @@ import { JsonPipe } from '@angular/common';
   templateUrl: './product-card.html',
   styleUrl: './product-card.scss',
 })
+
 export class ProductCard {
 
   @Input() product!: Product;

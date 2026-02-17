@@ -17,7 +17,8 @@
     <div class="category-list">
       
       @for (cat of categories; track cat.categoryId) {
-        <div class="category-item">
+        <div class="category-item" (click)="goToCategory(cat.categoryId)"
+     style="cursor: pointer;">
           
           @if (cat.imageUrl!== 'NULL') {
             <img [src]="'/' + cat.imageUrl" [alt]="cat.categoryName" class="category-img-full">
