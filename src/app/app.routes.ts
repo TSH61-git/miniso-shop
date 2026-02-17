@@ -7,6 +7,9 @@ import { Branches } from './components/branches/branches';
 import { Login } from './components/login/login';
 import { Register } from './components/register/register';
 import { SearchResults } from './components/search-results/search-results';
+import { ProductDetails } from './components/product-details/product-details';
+import { Products } from './components/products/products';
+
 
 export const routes: Routes = [
   { path: '',
@@ -44,6 +47,16 @@ export const routes: Routes = [
   { path: 'cart',
     component: SearchResults
   },
+   {
+  path: 'product/:id',
+  component: ProductDetails
+},
+{ path: 'products', component: Products },
+{
+  path: 'products/:categoryId',
+  component: Products
+},
+
 ];
 
 @NgModule({
