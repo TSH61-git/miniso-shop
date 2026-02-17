@@ -1,0 +1,46 @@
+<div style="direction: rtl; padding: 16px;">
+  <h2>מוצרים</h2>
+  <h1 style="color:red;">PRODUCTS PAGE</h1>
+
+
+  <!-- סינון -->
+  <div style="display: flex; gap: 12px; align-items: end; flex-wrap: wrap;">
+    <div>
+      <label>חיפוש (תיאור)</label><br />
+      <input [(ngModel)]="desc" />
+    </div>
+
+    <div>
+      <label>מינימום מחיר</label><br />
+      <input type="number" [(ngModel)]="minPrice" />
+    </div>
+
+    <div>
+      <label>מקסימום מחיר</label><br />
+      <input type="number" [(ngModel)]="maxPrice" />
+    </div>
+
+    <button (click)="applyFilters()">סנן</button>
+  </div>
+
+  <hr />
+
+  <div *ngIf="isLoading">טוען...</div>
+  <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
+
+  <div *ngIf="!isLoading && !errorMessage && products.length === 0">
+    אין מוצרים להצגה
+  </div>
+
+  
+
+
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+    <app-product-card
+  *ngFor="let p of products"
+  [product]="p">
+</app-product-card>
+
+  </div>
+</div>
+

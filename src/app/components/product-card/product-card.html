@@ -1,10 +1,14 @@
-<div class="card">
-  <div class="image-wrapper" [style.height]="randomHeight">
-    <img [src]="product.imageUrl || 'assets/placeholder.jpg'">
-    
-    <div class="hover-info">
-      <div class="name">{{ product.productName }}</div>
-      <div class="price">₪{{ product.price }}</div>
-    </div>
-  </div>
+<div class="product-card" (click)="goToDetails()">
+
+
+  <img 
+    class="product-image"
+    [src]="product.imageUrl" 
+    alt="{{ product.productName }}" 
+  />
+
+  <p class="product-price">
+   {{product.productName}}  ₪ {{ product.price }}
+  </p>
+
 </div>
