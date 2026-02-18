@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart-service';
 import { RouterLink } from '@angular/router'; 
 
-
 @Component({
   selector: 'app-cart',
   imports: [CommonModule, RouterLink],
@@ -30,16 +29,15 @@ export class Cart {
     }
 }
 
-  // (אופציונלי) פונקציה להסרה או הפחתה ב-Service
+
   checkout() {
+    // בדיקה אם העגלה ריקה לפני השליחה
+    if (this.cartService.items().length === 0) {
+      alert('העגלה שלך ריקה!');
+      return;
+    }
+
+    // הפעלת תהליך יצירת ההזמנה מהשירות
     this.cartService.createOrder();
-    // ניקוי העגלה
-    this.cartService.clearCart();
-    
-    // הודעה למשתמש
-    alert('ההזמנה בוצעה בהצלחה');
-    
-    // מעבר לדף הבית או לדף "תודה רבה"
-    // this.router.navigate(['/']);
   }
 }

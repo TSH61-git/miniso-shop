@@ -2,9 +2,12 @@
   padding: 20px;
   max-width: 1000px;
   margin: 0 auto;
-  direction: rtl; // התאמה לעברית
+  direction: rtl; 
 
-  h2 { border-bottom: 2px solid #eee; padding-bottom: 10px; }
+  h2 { 
+    border-bottom: 2px solid #eee; 
+    padding-bottom: 10px; 
+  }
 
   .cart-grid {
     display: grid;
@@ -12,7 +15,9 @@
     gap: 30px;
     margin-top: 20px;
 
-    @media (max-width: 768px) { grid-template-columns: 1fr; }
+    @media (max-width: 768px) { 
+      grid-template-columns: 1fr; 
+    }
   }
 
   .cart-item {
@@ -27,44 +32,44 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 
     .quantity-controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
 
-  button {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    background: white;
-    cursor: pointer;
-    transition: all 0.2s;
+      button {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        background: white;
+        cursor: pointer;
+        transition: all 0.2s;
 
-    &:hover:not(:disabled) {
-      background: #f0f0f0;
-      border-color: #888;
-    }
+        &:hover:not(:disabled) {
+          background: #f0f0f0;
+          border-color: #888;
+        }
 
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-  }
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
 
-  .delete-item {
-    border: none;
-    background: transparent;
-    color: #e74c3c;
-    font-size: 1.2rem;
-    margin-right: 10px;
-    
-    &:hover {
-      background: #fee;
-      color: #c0392b;
-    }
-  }
-}
-  }
+      .delete-item {
+        border: none;
+        background: transparent;
+        color: #e74c3c;
+        font-size: 1.2rem;
+        margin-right: 10px;
+        
+        &:hover {
+          background: #fee;
+          color: #c0392b;
+        }
+      }
+    } // סגירת quantity-controls
+  } // סגירת cart-item
 
   .cart-summary {
     background: #f9f9f9;
@@ -78,7 +83,14 @@
       display: flex;
       justify-content: space-between;
       margin: 15px 0;
-      &.total { font-weight: bold; font-size: 1.2rem; color: #2c3e50; border-top: 1px solid #ddd; pt: 10px; }
+      
+      &.total { 
+        font-weight: bold; 
+        font-size: 1.2rem; 
+        color: #2c3e50; 
+        border-top: 1px solid #ddd; 
+        padding-top: 10px; // תוקן מ-pt
+      }
     }
 
     button {
@@ -91,9 +103,21 @@
       font-weight: bold;
     }
 
-    .checkout-btn { background: #27ae60; color: white; &:hover { background: #219150; } }
-    .clear-btn { background: transparent; color: #e74c3c; border: 1px solid #e74c3c; }
+    .checkout-btn { 
+      background: #27ae60; 
+      color: white; 
+      &:hover { background: #219150; } 
+    }
+    
+    .clear-btn { 
+      background: transparent; 
+      color: #e74c3c; 
+      border: 1px solid #e74c3c; 
+    }
   }
 
-  .empty-cart { text-align: center; margin-top: 50px; }
-}
+  .empty-cart { 
+    text-align: center; 
+    margin-top: 50px; 
+  }
+} // סגירת cart-container

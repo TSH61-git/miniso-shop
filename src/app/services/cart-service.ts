@@ -1,10 +1,14 @@
 import { Injectable, signal, effect, computed } from '@angular/core';
 import { CartItem } from '../models/CartItem';
+import { HttpClient } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { OrderCreateDTO, OrderItemDTO } from '../models/OrderDTO';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  private http = inject(HttpClient);
   private apiUrl = 'https://localhost:44367/api/Order';
   // סיגנל שמחזיק את רשימת המוצרים
   private cartItems = signal<CartItem[]>([]);
@@ -83,15 +87,50 @@ removeItem(productId: number) {
     this.cartItems.set([]);
   }
 
+
   createOrder() {
-    const order = {
-      user: localStorage.getItem('username'),
-      items: this.items(),
-      total: this.totalPrice(),
-      date: new Date()
-    };
-    // שליחה ל-Back-end...
- }
+  // 1. הכנת פריטי ההזמנה לפי ה-DTO
+  
+  const orderItems: OrderItemDTO[] = this.cartItems().map(item => ({
+    productId: item.productId,
+    orderId: 0, // כפי שצוין, נשלח 0 ביצירה
+    quantity: item.quantity
+  }));
+
+  const userData = localStorage.getItem('miniso_user');
+  let userId = 0;
+
+  if (userData) {
+    // 2. המרה משרשרת (String) לאובייקט JavaScript
+    const user = JSON.parse(userData);
+    userId = user.userId; // חילוץ ה-ID (לפי התמונה זה 26)
+  }
+
+  if (userId === 0) {
+    alert('שגיאה: משתמש לא מחובר');
+    return;
+  }
+
+  // 3. בניית אובייקט ה-OrderCreateDTO
+  const orderData: OrderCreateDTO = {
+    userId: userId,
+    orderSum: this.totalPrice(), // חישוב הסכום הכולל מהעגלה
+    orderItems: orderItems
+  };
+
+  // 4. שליחת הבקשה לשרת
+  return this.http.post<any>(this.apiUrl, orderData).subscribe({
+    next: (response) => {
+      console.log('Order created successfully!', response);
+      this.clearCart(); // ניקוי העגלה לאחר הצלחה
+      alert('ההזמנה בוצעה בהצלחה!');
+    },
+    error: (err) => {
+      console.error('Error creating order:', err);
+      alert('חלה שגיאה בביצוע ההזמנה');
+    }
+  });
+}
 
  
 }
