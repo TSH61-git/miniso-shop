@@ -9,6 +9,7 @@ import { Register } from './components/register/register';
 import { SearchResults } from './components/search-results/search-results';
 import { ProductDetails } from './components/product-details/product-details';
 import { Products } from './components/products/products';
+import { Cart } from './components/cart/cart';
 
 
 export const routes: Routes = [
@@ -45,7 +46,8 @@ export const routes: Routes = [
     title: 'Miniso - הרשמה' 
   },
   { path: 'cart',
-    component: SearchResults
+    component: Cart,
+    title: 'Miniso - עגלת קניות'
   },
    {
   path: 'product/:id',

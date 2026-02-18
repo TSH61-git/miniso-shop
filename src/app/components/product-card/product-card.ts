@@ -1,9 +1,8 @@
-import { Component ,Input} from '@angular/core';
+import { Component ,Input, Inject, inject} from '@angular/core';
 import { Product } from '../../models/Product';
 import { Router } from '@angular/router';
 import { JsonPipe } from '@angular/common';
-
-
+import { CartService } from '../../services/cart-service';
 
 
 @Component({
@@ -17,12 +16,24 @@ import { JsonPipe } from '@angular/common';
 export class ProductCard {
 
   @Input() product!: Product;
+  private cartService = inject(CartService);
 
-    constructor(private router: Router) {}
+  constructor(private router: Router) {}
 
   goToDetails() {
     this.router.navigate(['/product', this.product.productId]);
   }
 
+  onAddToCart() {
+    // שולחים את המוצר ל-Service
+    this.cartService.addToCart({
+      productId: this.product.productId,
+      name: this.product.productName,
+      price: this.product.price,
+      quantity: 1
+    });
+    
+    alert('המוצר נוסף לסל!'); 
+  }
 
 }

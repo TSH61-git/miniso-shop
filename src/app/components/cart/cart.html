@@ -1,0 +1,54 @@
+<p>cart works!</p>
+
+<div class="cart-container">
+  <h2>סל הקניות שלי 🛒</h2>
+
+  @if (cartService.items().length > 0) {
+    <div class="cart-grid">
+      <div class="items-list">
+        @for (item of cartService.items(); track item.productId) {
+          <div class="cart-item">
+            <div class="item-info">
+              <h4>{{ item.name }}</h4>
+              <p>מחיר ליחידה: {{ item.price }} ₪</p>
+            </div>
+            
+            <div class="quantity-controls">
+                <button (click)="decrement(item.productId)" [disabled]="item.quantity === 1">-</button>
+                
+                <span>כמות: <strong>{{ item.quantity }}</strong></span>
+                
+                <button (click)="increment(item.productId)">+</button>
+                
+                <button class="delete-item" (click)="removeItem(item.productId)">🗑️</button>
+            </div>
+            
+            <div class="item-total">
+              {{ item.price * item.quantity }} ₪
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="cart-summary">
+        <h3>סיכום הזמנה</h3>
+        <div class="summary-row">
+          <span>סה"כ מוצרים:</span>
+          <span>{{ cartService.items().length }}</span>
+        </div>
+        <div class="summary-row total">
+          <span>לתשלום:</span>
+          <span>{{ cartService.totalPrice() }} ₪</span>
+        </div>
+        
+        <button class="checkout-btn" (click)="checkout()">בצע הזמנה עכשיו</button>
+        <button class="clear-btn" (click)="cartService.clearCart()">רוקן עגלה</button>
+      </div>
+    </div>
+  } @else {
+    <div class="empty-cart">
+      <p>העגלה שלך ריקה... אולי כדאי להוסיף משהו?</p>
+      <button routerLink="/products">חזרה לחנות</button>
+    </div>
+  }
+</div>
