@@ -2,10 +2,12 @@ import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductServices } from '../../services/product-services';
 import { Product } from '../../models/Product';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
-  imports: [],
+  standalone: true, 
+  imports: [CommonModule],
   templateUrl: './product-details.html',
   styleUrl: './product-details.scss',
 })
@@ -23,6 +25,7 @@ export class ProductDetails implements OnInit {
     
     this.productService.getProductById(id)
       .subscribe(res => {
+        console.log("data:", res);
         this.product = res;
       });
   }

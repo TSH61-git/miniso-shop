@@ -1,16 +1,26 @@
 
 
 
-<div *ngIf="product">
+<div *ngIf="product" class="product-container">
 
-  <img [src]="product.imageUrl" />
+  <div class="image-section">
+    <img [src]="product.imageUrl" alt="{{ product.productName }}" />
+  </div>
 
-  <h2>{{ product.productName }}</h2>
+  <div class="details-section">
+    <h1 class="product-title">{{ product.productName }}</h1>
 
-  <p>{{ product.description }}</p>
+    <p class="product-description">
+      {{ product.description }}
+    </p>
 
-  <h3>{{ product.price }} ₪</h3>
+    <h2 class="product-price">
+      ₪ {{ product.price }}
+    </h2>
 
-  <button>הוסף לסל</button>
+    <button class="add-to-cart-btn">
+      הוסף לסל
+    </button>
+  </div>
 
 </div>
