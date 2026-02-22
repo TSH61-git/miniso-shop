@@ -51,6 +51,9 @@ getProducts(
 
     return this.http.get<PagedResult<Product>>(this.apiUrl, { params });
   }
+  updateProduct(id: number, product: Product): Observable<any> {
+  return this.http.put(`${this.apiUrl}/${id}`, product);
+}
 }
 
 

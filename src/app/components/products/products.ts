@@ -5,6 +5,8 @@ import { Product } from '../../models/Product';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductCard } from '../product-card/product-card';
+import { AuthService } from '../../services/auth-service';
+import { Router } from '@angular/router';
 
 
 
@@ -34,7 +36,9 @@ export class Products implements OnInit {
   maxPrice?: number;
 
   constructor(private route: ActivatedRoute,
-    private productService: ProductServices) {}
+    private productService: ProductServices,
+  public authService: AuthService,
+  private router: Router) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('categoryId');
@@ -74,6 +78,10 @@ export class Products implements OnInit {
     this.position = 1; // תמיד חוזרים לעמוד 1 אחרי סינון
     this.load();
   }
+
+  goToAddProduct() {
+  this.router.navigate(['/add-product']);
+}
 
   
 

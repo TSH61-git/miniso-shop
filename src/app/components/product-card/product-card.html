@@ -13,4 +13,18 @@
 
   <button (click)="onAddToCart()">הוסף לסל 🛒</button>
 
+  <div *ngIf="authService.isAdmin" class="admin-buttons">
+
+    <button
+      (click)="editProduct(product.productId); $event.stopPropagation()">
+      עריכת מוצר
+    </button>
+
+    <button
+      (click)="deleteProduct(product.productId); $event.stopPropagation()">
+      מחק מוצר
+    </button>
+
+  </div>
+
 </div>

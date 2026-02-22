@@ -2,6 +2,12 @@
   <h2>מוצרים</h2>
   <h1 style="color:red;">PRODUCTS PAGE</h1>
 
+  <div *ngIf="authService.isAdmin" style="margin-bottom: 16px;">
+  <button (click)="goToAddProduct()">
+    ➕ הוספת מוצר
+  </button>
+</div>
+
 
   <!-- סינון -->
   <div style="display: flex; gap: 12px; align-items: end; flex-wrap: wrap;">

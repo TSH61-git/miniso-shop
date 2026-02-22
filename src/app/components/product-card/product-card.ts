@@ -3,12 +3,15 @@ import { Product } from '../../models/Product';
 import { Router } from '@angular/router';
 import { JsonPipe } from '@angular/common';
 import { CartService } from '../../services/cart-service';
+import { AuthService } from '../../services/auth-service';
+import { CommonModule } from '@angular/common';
+
 
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [JsonPipe ],
+  imports: [JsonPipe,CommonModule ],
   templateUrl: './product-card.html',
   styleUrl: './product-card.scss',
 })
@@ -18,7 +21,8 @@ export class ProductCard {
   @Input() product!: Product;
   private cartService = inject(CartService);
 
-  constructor(private router: Router) {}
+  constructor( public authService: AuthService,
+                  private router: Router) {}
 
   goToDetails() {
     this.router.navigate(['/product', this.product.productId]);
@@ -35,5 +39,14 @@ export class ProductCard {
     
     alert('המוצר נוסף לסל!'); 
   }
+
+  editProduct(id: number) {
+  this.router.navigate(['/edit-product', id]);
+}
+
+deleteProduct(id: number) {
+  // כאן נקרא ל-productService.delete
+  console.log("Deleting product", id);
+}
 
 }

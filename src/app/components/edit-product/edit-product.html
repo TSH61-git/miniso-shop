@@ -1,0 +1,23 @@
+<h2>עריכת מוצר</h2>
+
+<div *ngIf="isLoading">טוען...</div>
+<div *ngIf="error" style="color:red">{{ error }}</div>
+
+<form *ngIf="!isLoading" (ngSubmit)="save()">
+  <label>שם מוצר</label>
+  <input [(ngModel)]="product.productName" name="productName" />
+
+  <label>מחיר</label>
+  <input type="number" [(ngModel)]="product.price" name="price" />
+
+  <label>תיאור</label>
+  <textarea [(ngModel)]="product.description" name="description"></textarea>
+
+  <label>תמונה (URL)</label>
+  <input [(ngModel)]="product.imageUrl" name="imageUrl" />
+
+  <div style="margin-top: 12px;">
+    <button type="submit">שמור</button>
+    <button type="button" (click)="cancel()">ביטול</button>
+  </div>
+</form>
