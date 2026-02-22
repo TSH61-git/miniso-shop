@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
+import { Component, HostListener, inject } from '@angular/core';
+import { CommonModule, Location } from '@angular/common'; 
 import { Router, RouterModule } from '@angular/router'; 
 import { SearchService } from '../../services/search-service';
-import { Location } from '@angular/common'; // ייבוא השירות
+import { AuthService } from '../../services/auth-service'; // ודאי שהנתיב נכון
+import { CartService } from '../../services/cart-service'; // ודאי שהנתיב נכון
 
 @Component({
   selector: 'app-header',
@@ -13,10 +14,30 @@ import { Location } from '@angular/common'; // ייבוא השירות
 
 
 export class Header {
-  constructor(private searchService: SearchService, private router: Router, private location: Location) {}
+  public authService = inject(AuthService);
+  private router = inject(Router);
+  private location = inject(Location);
+  public cartService = inject(CartService);
 
+  isDropdownOpen = false;
 
-// components/header/header.component.ts
+  toggleDropdown(event: Event) {
+    event.stopPropagation(); // מונע מהלחיצה לסגור את התפריט מיד דרך ה-HostListener
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  // סגירה בלחיצה בכל מקום אחר בדף
+  @HostListener('document:click')
+  closeDropdown() {
+    this.isDropdownOpen = false;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.isDropdownOpen = false;
+    this.router.navigate(['/home']); // או לדף הבית
+  }
+
 onSearchChange(event: any) {
   const term = event.target.value;
 
@@ -24,7 +45,6 @@ onSearchChange(event: any) {
     // 2. חוזרים דף אחד אחורה
     this.location.back();
   } else {
-    //this.searchService.search(term);
     this.router.navigate(['/search'], { queryParams: { q: term } });
   }
 }

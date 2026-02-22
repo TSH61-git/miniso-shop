@@ -26,6 +26,10 @@ export class CartService {
     });
   }
 
+  cartCount = computed(() => {
+    return this.cartItems().reduce((total, item) => total + (item.quantity || 1), 0);
+  });
+
   // יצירת מפתח ייחודי לפי המשתמש השמור ב-LocalStorage
   private getCartKey(): string {
     const username = localStorage.getItem('username'); // נניח שזה המפתח שבו שמרת את השם
@@ -60,7 +64,6 @@ export class CartService {
     });
   }
 
-  // בתוך ה-CartService
 
 decreaseQuantity(productId: number) {
   this.cartItems.update(prevItems => {

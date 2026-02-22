@@ -133,6 +133,101 @@ $transition-speed: 0.2s;
     border: 2px solid #fff;
   }
 
+  .header__profile-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .profile-trigger {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: inherit; // יקבל את הצבע מה-header__action-link
+    font-size: 1.2rem;
+    
+    &:hover {
+      color: #e4002b; // הצבע האדום של מותגים כמו מיניסו
+    }
+  }
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: calc(100% + 15px); // מיקום מתחת לאייקון
+  left: 0;
+  background-color: #fff;
+  min-width: 200px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border: 1px solid #f0f0f0;
+  z-index: 999;
+  padding: 10px 0;
+  direction: rtl; // מוודא שהטקסט מימין לשמאל
+
+  &::before { // משולש קטן למעלה
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 15px;
+    width: 12px;
+    height: 12px;
+    background: white;
+    transform: rotate(45deg);
+    border-top: 1px solid #f0f0f0;
+    border-left: 1px solid #f0f0f0;
+  }
+
+  .dropdown-header {
+    padding: 10px 15px;
+    .user-name {
+      font-weight: 700;
+      color: #333;
+    }
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid #f0f0f0;
+    margin: 5px 0;
+  }
+
+  .dropdown-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      a, .logout-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 15px;
+        width: 100%;
+        text-align: right;
+        color: #555;
+        text-decoration: none;
+        font-size: 14px;
+        transition: background 0.2s;
+        border: none;
+        background: none;
+        cursor: pointer;
+
+        i {
+          // width: 18px;
+          color: #888;
+        }
+
+        &:hover {
+          background-color: #f8f8f8;
+          color: #e4002b;
+          i { color: #e4002b; }
+        }
+      }
+    }
+  }
+}
+
   @media (max-width: 1024px) {
     &__nav {
       display: none;

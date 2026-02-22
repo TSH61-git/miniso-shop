@@ -37,7 +37,7 @@ export const routes: Routes = [
   { path: 'management',
     component: ProductCard
   }, 
-  { path: 'profile',
+  { path: 'login',
     component: Login,
     title: 'Miniso - התחברות'
   },

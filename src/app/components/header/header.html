@@ -43,12 +43,43 @@
     </div>
 
     <div class="header__actions">
-      <a routerLink="/profile" class="header__action-link">
-        <i class="far fa-user"></i>
-      </a>
+      
+      <div class="header__profile-container">
+    <button class="header__action-link profile-trigger" (click)="toggleDropdown($event)">
+      <i class="far fa-user"></i>
+    </button>
+
+    @if (isDropdownOpen) {
+      <div class="profile-dropdown" (click)="$event.stopPropagation()">
+        
+        @if (authService.currentUser$ | async; as user) {
+          <div class="dropdown-header">
+            <span class="user-name">שלום, {{ user.firstName }}</span>
+          </div>
+          <hr>
+          <ul class="dropdown-list">
+            <li><a routerLink="/profile" (click)="isDropdownOpen = false"><i class="fas fa-user-edit"></i> עדכון פרטים</a></li>
+            <li><a routerLink="/orders" (click)="isDropdownOpen = false"><i class="fas fa-box"></i> ההזמנות שלי</a></li>
+            <li><button (click)="logout()" class="logout-btn"><i class="fas fa-sign-out-alt"></i> התנתקות</button></li>
+          </ul>
+        } @else {
+          <ul class="dropdown-list">
+            <li><a routerLink="/login" (click)="isDropdownOpen = false"><i class="fas fa-sign-in-alt"></i> התחברות</a></li>
+            <li><a routerLink="/register" (click)="isDropdownOpen = false"><i class="fas fa-user-plus"></i> הרשמה</a></li>
+          </ul>
+        }
+
+      </div>
+    }
+  </div>
+
       <a routerLink="/cart" class="header__action-link header__action-link--cart">
         <i class="fas fa-shopping-cart"></i>
-        <span class="header__cart-badge">2</span>
+        @if (cartService.cartCount() > 0) {
+          <span class="header__cart-badge">
+            {{ cartService.cartCount() }}
+          </span>
+        }
       </a>
     </div>
 
