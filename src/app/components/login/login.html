@@ -25,9 +25,24 @@
             <span class="error-hint">נא להזין כתובת אימייל תקינה</span>
           }
         </div>
+
         
         <div class="field-group">
-          <input type="password" formControlName="password" placeholder="סיסמה">
+          <div class="password-wrapper">
+            <input 
+              [type]="isPasswordVisible ? 'text' : 'password'" 
+              formControlName="password" 
+              placeholder="סיסמה">
+            
+            <button type="button" class="toggle-password-btn" (click)="togglePasswordVisibility()">
+              @if (isPasswordVisible) {
+                <span>🙈</span>
+              } @else {
+                <span>👁️</span>
+              }
+            </button>
+          </div>
+
           @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
             <span class="error-hint">נא להזין סיסמה</span>
           }

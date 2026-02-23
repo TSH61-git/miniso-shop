@@ -46,4 +46,10 @@ export class Login {
       });
     }
   }
+
+  isPasswordVisible: boolean = false;
+
+  togglePasswordVisibility(): void {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
 }

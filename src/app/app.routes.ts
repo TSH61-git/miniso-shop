@@ -12,6 +12,7 @@ import { Products } from './components/products/products';
 import { Cart } from './components/cart/cart';
 import { EditProduct } from './components/edit-product/edit-product';
 import { OrderList } from './components/order-list/order-list';
+import { EditProfile } from './components/edit-profile/edit-profile';
 
 export const routes: Routes = [
   { path: '',
@@ -63,6 +64,11 @@ export const routes: Routes = [
   path: 'orderList',
   component: OrderList,
   title: 'Miniso - ההזמנות שלי'
+},
+{
+ path: 'updateProfile',
+  component: EditProfile,
+  title: 'Miniso - עדכון פרופיל'
 },
 
 { path: 'edit-product/:id', component: EditProduct },

@@ -1,0 +1,89 @@
+.edit-profile-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  direction: rtl;
+
+  .card {
+    background: #fff;
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+
+    h3 { margin-bottom: 1.5rem; color: #222; text-align: center; }
+  }
+
+  .form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 1rem;
+  }
+
+  .field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2rem;
+
+    label { font-size: 0.9rem; margin-bottom: 5px; color: #666; font-weight: 500; }
+    
+    input {
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: border-color 0.3s;
+      &:focus { border-color: #ff385c; outline: none; }
+    }
+
+    .error { color: #ff385c; font-size: 0.8rem; margin-top: 4px; }
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover { background: #000; }
+    &:disabled { background: #ccc; cursor: not-allowed; }
+  }
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 1.5rem;
+
+  button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .submit-btn {
+    background: #333;
+    color: white;
+    border: none;
+    &:hover:not(:disabled) { background: #000; }
+    &:disabled { background: #ccc; cursor: not-allowed; }
+  }
+
+  .cancel-btn {
+    background: white;
+    color: #333;
+    border: 1px solid #ddd;
+    &:hover { background: #f8f8f8; border-color: #999; }
+  }
+}

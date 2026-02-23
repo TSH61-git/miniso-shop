@@ -21,15 +21,15 @@ export class Register {
   constructor(private fb: FormBuilder, private authService: AuthService,private router: Router) {}
 
   ngOnInit(): void {
+
     this.registerForm = this.fb.group({
-      // שם פרטי: חובה, מינימום 2 תווים
       firstName: ['', [Validators.required, Validators.minLength(2)]],
-      // שם משפחה: חובה, מינימום 2 תווים
       lastName: ['', [Validators.required, Validators.minLength(2)]],
-      // אימייל: חובה, פורמט תקין של אימייל
       email: ['', [Validators.required, Validators.email]],
-      // סיסמה: חובה, לפחות 6 תווים
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      phone: ['', [Validators.pattern('^[0-9]*$'), Validators.minLength(9), Validators.maxLength(15)]],
+      city: ['', [Validators.minLength(2)]],
+      street: ['', [Validators.minLength(2)]],
     });
   }
 
@@ -47,5 +47,11 @@ export class Register {
         }
       });
     }
+  }
+
+  isPasswordVisible: boolean = false;
+
+  togglePasswordVisibility(): void {
+    this.isPasswordVisible = !this.isPasswordVisible;
   }
 }

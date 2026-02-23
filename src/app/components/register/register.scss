@@ -177,3 +177,65 @@ $error-color: #e74c3c;
     transform: translateY(-1px);
   }
 }
+
+.register-form {
+  width: 100%;
+
+  // הוספת תמיכה בשדות זה לצד זה
+  .field-row {
+    display: flex;
+    gap: 15px; // רווח בין השדות
+    width: 100%;
+
+    .field-group {
+      flex: 1; // מחלק את השורה שווה בשווה
+    }
+  }
+
+  .field-group {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: right;
+
+    input {
+      width: 100%;
+      padding: 16px;
+    }
+  }
+}
+
+.password-wrapper {
+  position: relative; // מאפשר לכפתור להיצמד לאינפוט
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  input {
+    width: 100%;
+    padding-left: 45px !important; // משאיר מקום לאייקון מצד שמאל (באתר RTL)
+    // שאר העיצוב שכבר הגדרת קודם (border, radius וכו') נשאר זהה
+  }
+
+  .toggle-password-btn {
+    position: absolute;
+    left: 12px; // מרחק מהקצה השמאלי של האינפוט
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    z-index: 10; // מוודא שהכפתור תמיד מעל האינפוט
+    
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

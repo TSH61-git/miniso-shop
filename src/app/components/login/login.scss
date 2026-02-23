@@ -177,3 +177,32 @@ $error-color: #e74c3c;
     }
   }
 }
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  input {
+    width: 100%;
+    padding-left: 45px !important; // מקום לעין מצד שמאל (ב-RTL)
+  }
+
+  .toggle-password-btn {
+    position: absolute;
+    left: 12px; // מוודא שהכפתור "בתוך" האינפוט מצד שמאל
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

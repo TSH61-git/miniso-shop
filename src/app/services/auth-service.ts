@@ -33,6 +33,10 @@ export class AuthService {
     );
   }
 
+  updateUser(id: number, userData: any): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, userData);
+  }
+
   // לוגיקה משותפת לשמירה ב-LocalStorage ועדכון האתר
   private handleAuthentication(data: UserRead) {
     localStorage.setItem('miniso_user', JSON.stringify(data));

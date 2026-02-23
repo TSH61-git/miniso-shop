@@ -19,18 +19,19 @@
 
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
         
-        <div class="field-group">
-          <input type="text" formControlName="firstName" placeholder="שם פרטי">
-          @if (registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched) {
-            <span class="error-hint">נא להזין שם פרטי תקין</span>
-          }
-        </div>
-
-        <div class="field-group">
-          <input type="text" formControlName="lastName" placeholder="שם משפחה">
-          @if (registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched) {
-            <span class="error-hint">נא להזין שם משפחה תקין</span>
-          }
+        <div class="field-row">
+          <div class="field-group">
+            <input type="text" formControlName="firstName" placeholder="שם פרטי">
+            @if (registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched) {
+              <span class="error-hint">נא להזין שם פרטי</span>
+            }
+          </div>
+          <div class="field-group">
+            <input type="text" formControlName="lastName" placeholder="שם משפחה">
+            @if (registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched) {
+              <span class="error-hint">נא להזין שם משפחה</span>
+            }
+          </div>
         </div>
 
         <div class="field-group">
@@ -39,16 +40,43 @@
             <span class="error-hint">כתובת אימייל לא תקינה</span>
           }
         </div>
-        
+
         <div class="field-group">
-          <div class="password-wrapper">
-            <input type="password" formControlName="password" placeholder="סיסמה">
-          </div>
-          
-          @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
-            <span class="error-hint">הסיסמה חייבת להכיל לפחות 6 תווים</span>
+          <input type="tel" formControlName="phone" placeholder="מספר טלפון">
+          @if (registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched) {
+            <span class="error-hint">נא להזין מספר טלפון תקין</span>
           }
         </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <input type="text" formControlName="city" placeholder="עיר">
+          </div>
+          <div class="field-group">
+            <input type="text" formControlName="street" placeholder="רחוב">
+          </div>
+        </div>
+        
+       <div class="field-group">
+        <div class="password-wrapper">
+          <input 
+            [type]="isPasswordVisible ? 'text' : 'password'" 
+            formControlName="password" 
+            placeholder="סיסמה">
+          
+          <button type="button" class="toggle-password-btn" (click)="togglePasswordVisibility()">
+            @if (isPasswordVisible) {
+              <span>🙈</span> 
+            } @else {
+              <span>👁️</span>
+            }
+          </button>
+        </div>
+        
+        @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+          <span class="error-hint">הסיסמה חייבת להכיל לפחות 6 תווים</span>
+        }
+      </div>
 
         <button type="submit" class="main-submit-btn" [disabled]="registerForm.invalid || isLoading">
           {{ isLoading ? 'מעבד...' : 'הרשמה למערכת' }}

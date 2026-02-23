@@ -1,0 +1,48 @@
+<div class="edit-profile-wrapper">
+  <div class="card">
+    <h3>עריכת פרופיל</h3>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      
+      <div class="form-row">
+        <div class="field">
+          <label>שם פרטי</label>
+          <input formControlName="firstName" placeholder="הכנס שם פרטי">
+          @if(profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched) {
+            <small class="error">שם פרטי הוא חובה</small>
+          }
+        </div>
+
+        <div class="field">
+          <label>שם משפחה</label>
+          <input formControlName="lastName" placeholder="הכנס שם משפחה">
+          @if(profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched) {
+            <small class="error">שם משפחה הוא חובה</small>
+          }
+        </div>
+      </div>
+
+      <div class="field">
+        <label>טלפון</label>
+        <input formControlName="phone" type="tel">
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label>עיר</label>
+          <input formControlName="city">
+        </div>
+        <div class="field">
+          <label>רחוב</label>
+          <input formControlName="street">
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="profileForm.invalid" class="submit-btn">
+        עדכן פרטים
+      </button>
+      <button type="button" (click)="onCancel()" class="cancel-btn">
+          ביטול
+        </button>
+    </form>
+  </div>
+</div>
