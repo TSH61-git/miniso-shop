@@ -54,6 +54,16 @@ getProducts(
   updateProduct(id: number, product: Product): Observable<any> {
   return this.http.put(`${this.apiUrl}/${id}`, product);
 }
+
+addProduct(product: any) {
+  return this.http.post(
+    `${this.apiUrl}`,
+    product
+  );
+}
+deleteProduct(id: number) {
+  return this.http.delete(`${this.apiUrl}/${id}`);
+}
 }
 
 

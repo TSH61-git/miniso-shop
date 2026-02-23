@@ -5,6 +5,7 @@ import { JsonPipe } from '@angular/common';
 import { CartService } from '../../services/cart-service';
 import { AuthService } from '../../services/auth-service';
 import { CommonModule } from '@angular/common';
+import { ProductServices } from '../../services/product-services'; 
 
 
 
@@ -22,7 +23,8 @@ export class ProductCard {
   private cartService = inject(CartService);
 
   constructor( public authService: AuthService,
-                  private router: Router) {}
+                  private router: Router,
+                private productService: ProductServices) {}
 
   goToDetails() {
     this.router.navigate(['/product', this.product.productId]);
@@ -45,8 +47,25 @@ export class ProductCard {
 }
 
 deleteProduct(id: number) {
-  // כאן נקרא ל-productService.delete
-  console.log("Deleting product", id);
+
+  if (!confirm("האם אתה בטוח שברצונך למחוק?"))
+    return;
+
+  this.productService.deleteProduct(id)
+    .subscribe({
+      next: () => {
+        alert("המוצר נמחק בהצלחה");
+
+        // אפשרות 1 – רענון כל הדף
+        window.location.reload();
+
+        // אפשרות 2 (יותר טוב) – להסתיר את הכרטיס
+        // this.isDeleted = true;
+      },
+      error: err => {
+        alert(err.error);
+      }
+    });
 }
 
 }

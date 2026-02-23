@@ -13,6 +13,7 @@ import { Cart } from './components/cart/cart';
 import { EditProduct } from './components/edit-product/edit-product';
 import { OrderList } from './components/order-list/order-list';
 import { EditProfile } from './components/edit-profile/edit-profile';
+import { AddProduct } from './components/add-product/add-product';
 
 export const routes: Routes = [
   { path: '',
@@ -72,6 +73,8 @@ export const routes: Routes = [
 },
 
 { path: 'edit-product/:id', component: EditProduct },
+
+{ path: 'add-product', component: AddProduct },
 
 ];
 
