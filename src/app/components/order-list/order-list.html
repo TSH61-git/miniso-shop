@@ -1,0 +1,36 @@
+<div class="orders-page">
+  <div class="header">
+    <h1>ההזמנות שלי</h1>
+    <div class="underline"></div>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading-spinner">טוען נתונים...</div>
+  } @else {
+    <div class="orders-list">
+      @for (order of orders(); track order.orderId) {
+        <div class="order-card">
+          <div class="order-header">
+            <span class="order-number">הזמנה #{{ order.orderId }}</span>
+            <span class="order-date">{{ order.orderDate | date:'dd/MM/yyyy' }}</span>
+          </div>
+          
+          <div class="order-content">
+            <p><strong>סכום הזמנה:</strong> {{ order.orderSum | currency:'ILS':'symbol' }}</p>
+            <div class="items-preview">
+              <small>מספר פריטים: {{ order.orderItems.length }}</small>
+            </div>
+          </div>
+
+          <div class="order-footer">
+            <button class="details-btn">לצפייה בפרטים</button>
+          </div>
+        </div>
+      } @empty {
+        <div class="no-orders">
+          <p>לא נמצאו הזמנות עבורך במערכת.</p>
+        </div>
+      }
+    </div>
+  }
+</div>

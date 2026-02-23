@@ -1,6 +1,3 @@
-
-
-
 <div *ngIf="product" class="product-container">
 
   <div class="image-section">
@@ -8,6 +5,8 @@
   </div>
 
   <div class="details-section">
+    <button (click)="backToProducts()">➡️</button>
+
     <h1 class="product-title">{{ product.productName }}</h1>
 
     <p class="product-description">
@@ -18,9 +17,7 @@
       ₪ {{ product.price }}
     </h2>
 
-    <button class="add-to-cart-btn">
-      הוסף לסל
-    </button>
+    <button class="add-to-cart-btn" (click)="onAddToCart()">הוסף לסל 🛒</button>
   </div>
 
 </div>

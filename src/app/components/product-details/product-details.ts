@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductServices } from '../../services/product-services';
 import { Product } from '../../models/Product';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../services/cart-service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
@@ -17,7 +19,9 @@ export class ProductDetails implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductServices
+    private productService: ProductServices,
+    private cartService: CartService,
+    private location: Location
   ) {}
 
   ngOnInit() {
@@ -28,6 +32,22 @@ export class ProductDetails implements OnInit {
         console.log("data:", res);
         this.product = res;
       });
+  }
+
+  onAddToCart() {
+    // שולחים את המוצר ל-Service
+    this.cartService.addToCart({
+      productId: this.product.productId,
+      name: this.product.productName,
+      price: this.product.price,
+      quantity: 1
+    });
+    
+    alert('המוצר נוסף לסל!'); 
+  }
+
+  backToProducts() {
+    this.location.back();
   }
 
 }

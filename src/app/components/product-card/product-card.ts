@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [JsonPipe,CommonModule ],
+  imports: [CommonModule ],
   templateUrl: './product-card.html',
   styleUrl: './product-card.scss',
 })
