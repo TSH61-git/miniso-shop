@@ -1,52 +1,54 @@
-<div style="direction: rtl; padding: 16px;">
-  <h2>מוצרים</h2>
-  <h1 style="color:red;">PRODUCTS PAGE</h1>
+<div class="products-page">
 
-  <div *ngIf="authService.isAdmin" style="margin-bottom: 16px;">
-  <button (click)="goToAddProduct()">
-    ➕ הוספת מוצר
-  </button>
+  <h2 class="page-title">מוצרים</h2>
+
+  <div *ngIf="authService.isAdmin" class="add-product-wrapper">
+    <button class="add-product-btn" (click)="goToAddProduct()">
+      ➕ הוספת מוצר
+    </button>
+  </div>
+
+  <div class="content-wrapper">
+
+    <!-- סינון צד ימין -->
+    <aside class="filters-panel">
+      <h3>סינון</h3>
+
+      <div class="filter-group">
+        <label>חיפוש (תיאור)</label>
+        <input [(ngModel)]="desc" />
+      </div>
+
+      <div class="filter-group">
+        <label>מינימום מחיר</label>
+        <input type="number" [(ngModel)]="minPrice" />
+      </div>
+
+      <div class="filter-group">
+        <label>מקסימום מחיר</label>
+        <input type="number" [(ngModel)]="maxPrice" />
+      </div>
+
+      <button class="filter-btn" (click)="applyFilters()">סנן</button>
+    </aside>
+
+    <!-- אזור מוצרים -->
+    <section class="products-section">
+
+      <div *ngIf="isLoading" class="state-message">טוען...</div>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      <div *ngIf="!isLoading && !errorMessage && products.length === 0" class="state-message">
+        אין מוצרים להצגה
+      </div>
+
+      <div class="products-grid">
+        <app-product-card
+          *ngFor="let p of products"
+          [product]="p">
+        </app-product-card>
+      </div>
+
+    </section>
+
+  </div>
 </div>
-
-
-  <!-- סינון -->
-  <div style="display: flex; gap: 12px; align-items: end; flex-wrap: wrap;">
-    <div>
-      <label>חיפוש (תיאור)</label><br />
-      <input [(ngModel)]="desc" />
-    </div>
-
-    <div>
-      <label>מינימום מחיר</label><br />
-      <input type="number" [(ngModel)]="minPrice" />
-    </div>
-
-    <div>
-      <label>מקסימום מחיר</label><br />
-      <input type="number" [(ngModel)]="maxPrice" />
-    </div>
-
-    <button (click)="applyFilters()">סנן</button>
-  </div>
-
-  <hr />
-
-  <div *ngIf="isLoading">טוען...</div>
-  <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
-
-  <div *ngIf="!isLoading && !errorMessage && products.length === 0">
-    אין מוצרים להצגה
-  </div>
-
-  
-
-
-  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
-    <app-product-card
-  *ngFor="let p of products"
-  [product]="p">
-</app-product-card>
-
-  </div>
-</div>
-

@@ -1,30 +1,41 @@
 <div class="product-card" (click)="goToDetails()">
 
-
-  <img 
-    class="product-image"
-    [src]="product.imageUrl" 
-    alt="{{ product.productName }}" 
-  />
-
-  <p class="product-price">
-   {{product.productName}}  ₪ {{ product.price }}
-  </p>
-
-  <button (click)="onAddToCart()">הוסף לסל 🛒</button>
-
-  <div *ngIf="authService.isAdmin" class="admin-buttons">
-
-    <button
-      (click)="editProduct(product.productId); $event.stopPropagation()">
-      עריכת מוצר
-    </button>
-
-    <button
-      (click)="deleteProduct(product.productId); $event.stopPropagation()">
-      מחק מוצר
-    </button>
-
+  <div class="image-wrapper">
+    <img
+      class="product-image"
+      [src]="product.imageUrl"
+      alt="{{ product.productName }}"
+    />
   </div>
 
+  <div class="product-info">
+    <h3 class="product-name">
+      {{ product.productName }}
+    </h3>
+
+    <div class="product-price">
+      ₪ {{ product.price }}
+    </div>
+
+    <button 
+      class="add-to-cart-btn"
+      (click)="onAddToCart(); $event.stopPropagation()">
+      הוסף לסל 🛒
+    </button>
+
+    <div *ngIf="authService.isAdmin" class="admin-buttons">
+      <button 
+        class="admin-btn edit"
+        (click)="editProduct(product.productId); $event.stopPropagation()">
+        עריכה
+      </button>
+
+      <button 
+        class="admin-btn delete"
+        (click)="deleteProduct(product.productId); $event.stopPropagation()">
+        מחיקה
+      </button>
+    </div>
+
+  </div>
 </div>

@@ -1,21 +1,99 @@
 .product-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
   cursor: pointer;
-  text-align: center;
-  padding: 15px;
-  transition: 0.3s;
+  width: 260px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.image-wrapper {
+  background: #f8f8f8;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-image {
-  width: 180px;
+  width: 170px;
   height: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+.product-info {
+  padding: 18px;
+  text-align: center;
+}
+
+.product-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  min-height: 40px;
 }
 
 .product-price {
-  margin-top: 10px;
+  font-size: 20px;
   font-weight: bold;
   color: #e60023;
+  margin-bottom: 15px;
+}
+
+.add-to-cart-btn {
+  background-color: #e60023;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: 0.2s ease;
+  width: 100%;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #c4001d;
+}
+
+.admin-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.admin-btn {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.admin-btn.edit {
+  background: #4caf50;
+  color: white;
+}
+
+.admin-btn.delete {
+  background: #f44336;
+  color: white;
+}
+
+.admin-btn:hover {
+  opacity: 0.85;
 }
