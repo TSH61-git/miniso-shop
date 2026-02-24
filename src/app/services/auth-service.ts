@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { UserRead } from '../models/user-read';
+import { toSignal } from '@angular/core/rxjs-interop'; // ייבוא חשוב!
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AuthService {
   private apiUrl = 'https://localhost:44367/api/User'; 
   
   private currentUserSubject = new BehaviorSubject<UserRead | null>(null);
-  public currentUser$ = this.currentUserSubject.asObservable();
+ public currentUser = toSignal(this.currentUserSubject.asObservable());
 
   constructor(private http: HttpClient) {
     const savedUser = localStorage.getItem('miniso_user');

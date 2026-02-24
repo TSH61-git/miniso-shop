@@ -3,26 +3,39 @@ import { CartItem } from '../models/CartItem';
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { OrderCreateDTO, OrderItemDTO } from '../models/OrderDTO';
+import { AuthService } from './auth-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   private http = inject(HttpClient);
+  private authService = inject(AuthService);
   private apiUrl = 'https://localhost:44367/api/Order';
   // סיגנל שמחזיק את רשימת המוצרים
   private cartItems = signal<CartItem[]>([]);
 
-  constructor() {
-    // 1. טעינה ראשונית של העגלה ברגע שה-Service עולה
-    this.loadCart();
+constructor() {
+    effect(() => {
+    const user = this.authService.currentUser();
+    
+    if (!user) {
+      // ברגע שיש Logout:
+      // 1. ננקה את הסיגנל של העגלה בזיכרון
+      this.cartItems.set([]); 
+      // 2. נטען את עגלת האורח (שהיא כנראה ריקה כי מחקנו אותה ב-Login)
+      this.loadCart();
+    } else {
+      // ברגע שיש Login:
+      // הפונקציה הזו כבר תבצע את האיחוד ותנקה את עגלת האורח
+      this.loadCart();
+    }
+  }, { allowSignalWrites: true });
 
-    // 2. אפקט ששומר אוטומטית בכל שינוי, תוך שימוש במפתח הייחודי למשתמש
+    // אפקט ששומר את העגלה בלוקל סטורג' בכל שינוי בפריטים
     effect(() => {
       const key = this.getCartKey();
-      if (key) {
-        localStorage.setItem(key, JSON.stringify(this.cartItems()));
-      }
+      localStorage.setItem(key, JSON.stringify(this.cartItems()));
     });
   }
 
@@ -32,15 +45,55 @@ export class CartService {
 
   // יצירת מפתח ייחודי לפי המשתמש השמור ב-LocalStorage
   private getCartKey(): string {
-    const username = localStorage.getItem('username'); // נניח שזה המפתח שבו שמרת את השם
-    return username ? `cart_${username}` : 'cart_guest';
+    const userData = localStorage.getItem('miniso_user');
+    if (userData) {
+      const user = JSON.parse(userData);
+      return `cart_user_${user.userId}`; // שימוש ב-ID הייחודי
+    }
+    return 'cart_guest'; // עגלה למשתמש לא מחובר
   }
 
   // טעינת העגלה המתאימה למשתמש הנוכחי
   loadCart() {
-    const key = this.getCartKey();
-    const savedCart = localStorage.getItem(key);
-    this.cartItems.set(savedCart ? JSON.parse(savedCart) : []);
+    const guestKey = 'cart_guest';
+    const guestData = localStorage.getItem(guestKey);
+    const guestItems: CartItem[] = guestData ? JSON.parse(guestData) : [];
+
+    const userKey = this.getCartKey();
+    
+    // אם המשתמש מחובר (המפתח הוא לא של אורח)
+    if (userKey !== guestKey) {
+      const userData = localStorage.getItem(userKey);
+      const userItems: CartItem[] = userData ? JSON.parse(userData) : [];
+
+      // איחוד: לוקחים את עגלת המשתמש ומוסיפים לה את פריטי האורח
+      const mergedCart = this.mergeCarts(userItems, guestItems);
+      
+      this.cartItems.set(mergedCart);
+
+      // אחרי האיחוד - מנקים את עגלת האורח מהלוקל סטורג'
+      localStorage.removeItem(guestKey);
+    } else {
+      // אם זה עדיין אורח, פשוט טוענים כרגיל
+      this.cartItems.set(guestItems);
+    }
+  }
+
+  private mergeCarts(userItems: CartItem[], guestItems: CartItem[]): CartItem[] {
+    const newCart = [...userItems];
+
+    guestItems.forEach(guestItem => {
+      const existing = newCart.find(i => i.productId === guestItem.productId);
+      if (existing) {
+        // אם המוצר קיים בשניהם, נחבר את הכמויות
+        existing.quantity += guestItem.quantity;
+      } else {
+        // אם הוא חדש, נוסיף אותו לעגלת המשתמש
+        newCart.push(guestItem);
+      }
+    });
+
+    return newCart;
   }
 
   // חשיפת המוצרים לקריאה בלבד

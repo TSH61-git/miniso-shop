@@ -26,20 +26,20 @@ export const routes: Routes = [
   },
   { path: 'categories',
     component: ProductCard,
+    title: 'Miniso - מוצרים'
   },
   { path: 'branches',
-    component: Branches
+    component: Branches,
+    title: 'Miniso - סניפים'
   },
   { path: 'about',
-    component: About
+    component: About,
+    title: 'Miniso - אודות'
   },
   { path: 'search',
     component: SearchResults,
     title: 'Miniso - חיפוש' 
   },
-  { path: 'management',
-    component: ProductCard
-  }, 
   { path: 'login',
     component: Login,
     title: 'Miniso - התחברות'
@@ -54,12 +54,16 @@ export const routes: Routes = [
   },
    {
   path: 'product/:id',
-  component: ProductDetails
+  component: ProductDetails,
+  title: 'Miniso - פרטי מוצר'
 },
-{ path: 'products', component: Products },
+{ path: 'products', 
+  component: Products,
+  title: 'Miniso - מוצרים' },
 {
   path: 'products/:categoryId',
   component: Products
+
 },
 {
   path: 'orderList',
@@ -72,9 +76,9 @@ export const routes: Routes = [
   title: 'Miniso - עדכון פרופיל'
 },
 
-{ path: 'edit-product/:id', component: EditProduct },
+{ path: 'edit-product/:id', component: EditProduct, title: 'Miniso - עריכת מוצר' },
 
-{ path: 'add-product', component: AddProduct },
+{ path: 'add-product', component: AddProduct, title: 'Miniso - הוספת מוצר' },
 
 ];
 
