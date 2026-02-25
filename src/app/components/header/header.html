@@ -55,6 +55,7 @@
           <ul class="dropdown-list">
             <li><a routerLink="/updateProfile" (click)="isDropdownOpen = false"><i class="fas fa-user-edit"></i> עדכון פרטים</a></li>
             <li *ngIf="!authService.isAdmin"><a routerLink="/orderList" (click)="isDropdownOpen = false"><i class="fas fa-box"></i> ההזמנות שלי</a></li>
+            <li *ngIf="authService.isAdmin"><a routerLink="/orderList" (click)="isDropdownOpen = false"><i class="fas fa-box"></i> הצגת הזמנות</a></li>
             <li><button (click)="logout()" class="logout-btn"><i class="fas fa-sign-out-alt"></i> התנתקות</button></li>
           </ul>
         } @else {

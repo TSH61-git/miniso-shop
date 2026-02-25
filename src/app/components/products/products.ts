@@ -123,12 +123,7 @@ export class Products implements OnInit {
   }
 
   goToAddProduct() {
-  this.router.navigate(['/add-product']);
-}
-
-  
-  goToOrders() {
-    this.router.navigate(['/orderList']);
+    this.router.navigate(['/add-product']);
   }
 
 }
