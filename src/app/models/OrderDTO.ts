@@ -16,5 +16,6 @@ export interface Order {
   orderDate: string;
   orderSum: number;
   userId: number;
+  status: string;
   orderItems: OrderItemDTO[];
 }

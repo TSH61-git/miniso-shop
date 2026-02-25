@@ -24,6 +24,42 @@
 
           <div class="order-footer">
             <button class="details-btn">לצפייה בפרטים</button>
+            <p class="order-status">
+  סטטוס: 
+  <strong>{{ order.status }}</strong>
+</p>
+<button
+  *ngIf="
+    !authService.isAdmin &&
+    order.status === 'Delivered'
+  "
+  (click)="markReceived(order)"
+>
+  קיבלתי
+</button>
+
+<div
+  *ngIf="
+    authService.isAdmin &&
+    order.status !== 'Received'
+  "
+>
+
+  <select [(ngModel)]="order.status">
+
+    <option value="Accepted">Accepted</option>
+    <option value="Processing">Processing</option>
+    <option value="Shipped">Shipped</option>
+    <option value="Delivered">Delivered</option>
+    <option value="Cancelled">Cancelled</option>
+
+  </select>
+
+  <button (click)="saveStatus(order)">
+    שמור
+  </button>
+
+</div>
           </div>
         </div>
       } @empty {

@@ -11,6 +11,10 @@ export class OrderService {
   private http = inject(HttpClient);
   private apiUrl = 'https://localhost:44367/api/Order';
 
+  updateOrderStatus(orderId: number, body: any) {
+  return this.http.put(`${this.apiUrl}/${orderId}`, body);
+}
+
   getOrdersForCurrentUser(): Observable<Order[]> {
     const userData = localStorage.getItem('miniso_user');
     const userId = userData ? JSON.parse(userData).userId : null;
