@@ -36,6 +36,27 @@
   margin-bottom: 30px;
 }
 
+.quantity-section {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-section label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.quantity-section input {
+  width: 80px;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+
 .add-to-cart-btn {
   padding: 15px 40px;
   font-size: 18px;

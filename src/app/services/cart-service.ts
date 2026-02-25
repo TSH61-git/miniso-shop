@@ -111,9 +111,9 @@ constructor() {
       const existing = prev.find(i => i.productId === product.productId);
       if (existing) {
         return prev.map(i => i.productId === product.productId 
-          ? { ...i, quantity: i.quantity + 1 } : i);
+          ? { ...i, quantity: i.quantity + product.quantity } : i);
       }
-      return [...prev, { ...product, quantity: 1 }];
+      return [...prev, product];
     });
   }
 
