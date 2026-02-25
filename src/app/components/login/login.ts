@@ -24,8 +24,8 @@ export class Login {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
+      password: ['', [Validators.required, Validators.minLength(1)]]
     });
   }
 
@@ -41,9 +41,13 @@ export class Login {
         },
         error: (err) => {
           this.isLoading = false;
-          this.errorMessage = err.error?.message || 'שם משתמש או סיסמה שגויים';
+          // Generic error message for security - don't reveal if email exists or password is wrong
+          this.errorMessage = 'שם משתמש או סיסמה שגויים. אנא נסה שוב.';
         }
       });
+    } else {
+      // Mark all fields as touched to show validation errors
+      this.loginForm.markAllAsTouched();
     }
   }
 

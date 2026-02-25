@@ -62,7 +62,8 @@
           <input 
             [type]="isPasswordVisible ? 'text' : 'password'" 
             formControlName="password" 
-            placeholder="סיסמה">
+            placeholder="סיסמה"
+            (input)="updatePasswordStrength()">
           
           <button type="button" class="toggle-password-btn" (click)="togglePasswordVisibility()">
             @if (isPasswordVisible) {
@@ -74,7 +75,57 @@
         </div>
         
         @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
-          <span class="error-hint">הסיסמה חייבת להכיל לפחות 6 תווים</span>
+          <div class="error-hint">
+            @if (registerForm.get('password')?.errors?.['required']) {
+              הסיסמה היא שדה חובה
+            } @else if (registerForm.get('password')?.errors?.['passwordComplexity']) {
+              <div class="password-requirements">
+                הסיסמה חייבת לכלול:
+                <ul>
+                  <li [class.valid]="registerForm.get('password')?.errors?.['passwordComplexity']?.hasMinLength">לפחות 8 תווים</li>
+                  <li [class.valid]="registerForm.get('password')?.errors?.['passwordComplexity']?.hasUpperCase">אות גדולה באנגלית</li>
+                  <li [class.valid]="registerForm.get('password')?.errors?.['passwordComplexity']?.hasLowerCase">אות קטנה באנגלית</li>
+                  <li [class.valid]="registerForm.get('password')?.errors?.['passwordComplexity']?.hasNumeric">ספרה</li>
+                  <li [class.valid]="registerForm.get('password')?.errors?.['passwordComplexity']?.hasSpecial">תו מיוחד (#?!@$%^&*-)</li>
+                </ul>
+              </div>
+            }
+          </div>
+        }
+        
+        @if (passwordStrength && registerForm.get('password')?.value) {
+          <div class="password-strength" [class]="passwordStrength">
+            חוזק סיסמה: {{ passwordStrength === 'weak' ? 'חלש' : passwordStrength === 'medium' ? 'בינוני' : 'חזק' }}
+          </div>
+        }
+      </div>
+
+      <div class="field-group">
+        <div class="password-wrapper">
+          <input 
+            [type]="isPasswordVisible ? 'text' : 'password'" 
+            formControlName="confirmPassword" 
+            placeholder="אימות סיסמה">
+          
+          <button type="button" class="toggle-password-btn" (click)="togglePasswordVisibility()">
+            @if (isPasswordVisible) {
+              <span>🙈</span> 
+            } @else {
+              <span>👁️</span>
+            }
+          </button>
+        </div>
+        
+        @if (registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched) {
+          <span class="error-hint">
+            @if (registerForm.get('confirmPassword')?.errors?.['required']) {
+              אימות סיסמה הוא שדה חובה
+            }
+          </span>
+        }
+        
+        @if (registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched) {
+          <span class="error-hint">הסיסמאות אינן תואמות</span>
         }
       </div>
 

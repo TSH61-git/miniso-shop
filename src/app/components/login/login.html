@@ -22,7 +22,13 @@
         <div class="field-group">
           <input type="email" formControlName="email" placeholder="אימייל">
           @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
-            <span class="error-hint">נא להזין כתובת אימייל תקינה</span>
+            <span class="error-hint">
+              @if (loginForm.get('email')?.errors?.['required']) {
+                כתובת אימייל היא שדה חובה
+              } @else if (loginForm.get('email')?.errors?.['email'] || loginForm.get('email')?.errors?.['pattern']) {
+                נא להזין כתובת אימייל תקינה
+              }
+            </span>
           }
         </div>
 
@@ -44,7 +50,7 @@
           </div>
 
           @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
-            <span class="error-hint">נא להזין סיסמה</span>
+            <span class="error-hint">סיסמה היא שדה חובה</span>
           }
         </div>
 

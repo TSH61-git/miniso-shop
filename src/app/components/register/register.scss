@@ -123,6 +123,63 @@ $error-color: #e74c3c;
       margin-top: 6px;
       display: block;
       padding-right: 5px;
+
+      .password-requirements {
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 5px 0 0 0;
+          text-align: right;
+
+          li {
+            color: $error-color;
+            font-size: 11px;
+            margin-bottom: 2px;
+            position: relative;
+            padding-right: 15px;
+
+            &::before {
+              content: '✗';
+              position: absolute;
+              right: 0;
+              color: $error-color;
+            }
+
+            &.valid {
+              color: #27ae60;
+
+              &::before {
+                content: '✓';
+                color: #27ae60;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .password-strength {
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 4px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      display: inline-block;
+
+      &.weak {
+        background-color: #fee;
+        color: #e74c3c;
+      }
+
+      &.medium {
+        background-color: #fff8e1;
+        color: #f39c12;
+      }
+
+      &.strong {
+        background-color: #e8f5e8;
+        color: #27ae60;
+      }
     }
   }
 }
