@@ -18,6 +18,7 @@
     </div>
 
     <button 
+      *ngIf="!authService.isAdmin"
       class="add-to-cart-btn"
       (click)="onAddToCart(); $event.stopPropagation()">
       הוסף לסל 🛒
