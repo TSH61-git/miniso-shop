@@ -9,6 +9,7 @@ import { CategoryService } from '../../services/category-service';
 import { Category } from '../../models/Category';
 import { AuthService } from '../../services/auth-service';
 import { Router } from '@angular/router';
+import { PagedResult } from '../../models/paged-result';
 
 
 
@@ -27,7 +28,14 @@ export class Products implements OnInit {
 
   // paging
   position = 1;
-  skip = 10;
+  skip = 15; // Fixed page size of 15 products
+
+  // pagination data from API
+  totalItems = 0;
+  currentPage = 1;
+  totalPages = 0;
+  hasPreviousPage = false;
+  hasNextPage = false;
 
   // ui state
   isLoading = false;
@@ -67,8 +75,13 @@ export class Products implements OnInit {
     };
 
     this.productService.getProducts(this.position, this.skip, filters).subscribe({
-      next: (res) => {
+      next: (res: PagedResult<Product>) => {
         this.products = res.data;
+        this.totalItems = res.totalItems;
+        this.currentPage = res.currentPage;
+        this.hasPreviousPage = res.hasPreviousPage;
+        this.hasNextPage = res.hasNextPage;
+        this.totalPages = Math.ceil(this.totalItems / this.skip);
         this.isLoading = false;
       },
       error: (err) => {
@@ -82,6 +95,20 @@ export class Products implements OnInit {
   applyFilters(): void {
     this.position = 1; // תמיד חוזרים לעמוד 1 אחרי סינון
     this.load();
+  }
+
+  goToPreviousPage(): void {
+    if (this.hasPreviousPage) {
+      this.position--;
+      this.load();
+    }
+  }
+
+  goToNextPage(): void {
+    if (this.hasNextPage) {
+      this.position++;
+      this.load();
+    }
   }
 
   loadCategories(): void {

@@ -56,6 +56,27 @@
         </app-product-card>
       </div>
 
+      <!-- Pagination Controls -->
+      <div *ngIf="totalItems > skip" class="pagination">
+        <button 
+          class="pagination-btn" 
+          [disabled]="!hasPreviousPage" 
+          (click)="goToPreviousPage()">
+          ‹ קודם
+        </button>
+
+        <span class="pagination-info">
+          עמוד {{ currentPage }} מתוך {{ totalPages }} ({{ totalItems }} מוצרים)
+        </span>
+
+        <button 
+          class="pagination-btn" 
+          [disabled]="!hasNextPage" 
+          (click)="goToNextPage()">
+          הבא ›
+        </button>
+      </div>
+
     </section>
 
   </div>
