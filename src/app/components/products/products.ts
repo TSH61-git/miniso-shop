@@ -127,5 +127,8 @@ export class Products implements OnInit {
 }
 
   
+  goToOrders() {
+    this.router.navigate(['/orderList']);
+  }
 
 }

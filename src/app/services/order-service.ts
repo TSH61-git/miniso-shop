@@ -20,4 +20,9 @@ export class OrderService {
     }
     return this.http.get<Order[]>(`${this.apiUrl}/user/${userId}`);
   }
+
+  // Admin: get all orders
+  getAllOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.apiUrl}`);
+  }
 }
