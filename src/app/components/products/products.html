@@ -20,6 +20,14 @@
       </div>
 
       <div class="filter-group">
+        <label>קטגוריה</label>
+        <select [(ngModel)]="categoryId">
+          <option [ngValue]="0">כל הקטגוריות</option>
+          <option *ngFor="let c of categories" [ngValue]="c.categoryId">{{ c.categoryName }}</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
         <label>מינימום מחיר</label>
         <input type="number" [(ngModel)]="minPrice" />
       </div>

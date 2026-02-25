@@ -5,6 +5,8 @@ import { Product } from '../../models/Product';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductCard } from '../product-card/product-card';
+import { CategoryService } from '../../services/category-service';
+import { Category } from '../../models/Category';
 import { AuthService } from '../../services/auth-service';
 import { Router } from '@angular/router';
 
@@ -19,7 +21,8 @@ import { Router } from '@angular/router';
 })
 export class Products implements OnInit {
   products: Product[] = [];
-    categoryId!: number;
+    categoryId = 0;
+    categories: Category[] = [];
 
 
   // paging
@@ -37,6 +40,7 @@ export class Products implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private productService: ProductServices,
+    private categoryService: CategoryService,
   public authService: AuthService,
   private router: Router) {}
 
@@ -46,6 +50,7 @@ export class Products implements OnInit {
   if (id) {
     this.categoryId = Number(id);
   }
+    this.loadCategories();
     this.load();
   }
 
@@ -57,7 +62,7 @@ export class Products implements OnInit {
       desc: this.desc,
       minPrice: this.minPrice,
       maxPrice: this.maxPrice,
-      categoryIDs: this.categoryId ? [this.categoryId] : [], // כרגע ריק, נוסיף אחר כך
+      categoryIDs: this.categoryId && this.categoryId !== 0 ? [this.categoryId] : [],
       orderBy: 'price'
     };
 
@@ -77,6 +82,17 @@ export class Products implements OnInit {
   applyFilters(): void {
     this.position = 1; // תמיד חוזרים לעמוד 1 אחרי סינון
     this.load();
+  }
+
+  loadCategories(): void {
+    this.categoryService.getCategories().subscribe({
+      next: (res) => {
+        this.categories = res;
+      },
+      error: (err) => {
+        console.error('שגיאה בטעינת קטגוריות', err);
+      }
+    });
   }
 
   goToAddProduct() {
